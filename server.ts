@@ -29,10 +29,15 @@ export function app() {
     maxAge: '1y'
   }));
 
+  server.get('/test', (req, res, next) => {
+    return res.status(200).json({ok: "OK  dsdsd"})
+  })
+
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
+
 
   return server;
 }
